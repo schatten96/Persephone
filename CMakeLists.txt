@@ -4,4 +4,4 @@ project(Persephone)
 set(CMAKE_CXX_STANDARD 20)
 
 add_subdirectory(Nenetta)
-#add_subdirectory(you)
+add_subdirectory(Princeps)
