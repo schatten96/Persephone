@@ -61,5 +61,5 @@ int main()
         && !contains(std::span{a, 8}, std::span{a, 9})
     );
 
-    return 0;
+    return 1;
 }
