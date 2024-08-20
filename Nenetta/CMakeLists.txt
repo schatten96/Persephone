@@ -1,5 +1,15 @@
-set(TARGET template)
-file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp
-			  ${CMAKE_CURRENT_SOURCE_DIR}/*.h
-		  	  )
-add_executable(${TARGET} ${sources})
+add_subdirectory(core)
+
+option(ENABLE_TESTING OFF)
+if (ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
+
+option(ADD_DEBUG_EXECUTABLE ON)
+if (ADD_DEBUG_EXECUTABLE)
+	set(DEBUG_TARGET	nenetta-debug)
+	set(DEBUG_TARGET_LINKEDLIBS	nenetta-core)
+	add_executable(${DEBUG_TARGET}	"main.cpp")
+	target_link_libraries(${DEBUG_TARGET}	${DEBUG_TARGET_LINKEDLIBS})
+	target_include_directories(${DEBUG_TARGET}	INTERFACE	${PROJECT_SOURCE_DIR}/include)
+endif()
